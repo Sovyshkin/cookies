@@ -9,50 +9,7 @@ export default {
   components: { AppCard, AppCategories, GDialog, AppLoader },
   data() {
     return {
-      products: [
-        {
-          name: "Из Польши: Печенье Dr Gerard Magic Duo, с шоколадным кремом и сливками",
-          description: "35.6",
-          price: "49",
-          img: "",
-        },
-        {
-          name: "Из Польши: Печенье Dr Gerard Magic Duo, с шоколадным кремом и сливками",
-          description: "35.6",
-          price: "49",
-          img: "",
-        },
-        {
-          name: "Из Польши: Печенье Dr Gerard Magic Duo, с шоколадным кремом и сливками",
-          description: "35.6",
-          price: "49",
-          img: "",
-        },
-        {
-          name: "Из Польши: Печенье Dr Gerard Magic Duo, с шоколадным кремом и сливками",
-          description: "35.6",
-          price: "49",
-          img: "",
-        },
-        {
-          name: "Из Польши: Печенье Dr Gerard Magic Duo, с шоколадным кремом и сливками",
-          description: "35.6",
-          price: "49",
-          img: "",
-        },
-        {
-          name: "Из Польши: Печенье Dr Gerard Magic Duo, с шоколадным кремом и сливками",
-          description: "35.6",
-          price: "49",
-          img: "",
-        },
-        {
-          name: "Из Польши: Печенье Dr Gerard Magic Duo, с шоколадным кремом и сливками",
-          description: "35.6",
-          price: "49",
-          img: "",
-        },
-      ],
+      products: [],
       dialogState: false,
       name: "",
       description: "",
@@ -61,6 +18,7 @@ export default {
       idCard: "",
       country: "RU",
       isLoading: false,
+      message: "",
     };
   },
   methods: {
@@ -116,7 +74,15 @@ export default {
             },
           }
         );
-        console.log(response);
+        console.log(response.status);
+        if (response.status == 200) {
+          this.message = "Успешно";
+        } else {
+          this.message = response.data.detail;
+        }
+        setTimeout(() => {
+          this.message = "";
+        }, 2500);
       } catch (err) {
         console.log(err);
       }
@@ -136,10 +102,11 @@ export default {
       :price="card.price"
       :name="card.name"
       :description="card.description"
-      :img="card.img"
+      :image_url="card.image_url"
       :id="card.id"
       :key="card.id"
       @click="openModal(card)"
+      @updateInfo="load_products"
     />
     <GDialog v-model="dialogState" :max-width="1000" :border-radius="30">
       <div class="dialog">
@@ -154,6 +121,16 @@ export default {
         </div>
       </div>
     </GDialog>
+    <div
+      class="msg"
+      :class="{
+        success: this.message == 'Успешно',
+        error: this.message != 'Успешно',
+      }"
+      v-if="message"
+    >
+      {{ message }}
+    </div>
   </section>
 </template>
 <style scoped>

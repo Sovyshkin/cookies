@@ -149,6 +149,24 @@ h1 {
   text-align: center;
 }
 
+.msg {
+  padding: 10px 13px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #fff;
+  border-radius: 15px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.success {
+  background-color: #3cca0d;
+}
+
+.error {
+  background-color: #cf0032;
+}
+
 @media (max-width: 820px) {
   .wrap {
     width: 95%;

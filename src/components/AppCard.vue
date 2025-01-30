@@ -10,7 +10,7 @@ export default {
   props: {
     id: String,
     name: String,
-    img: String,
+    image_url: String,
     description: String,
     price: String,
     cart: Boolean,
@@ -19,7 +19,11 @@ export default {
   methods: {
     async removeItem() {
       try {
-        let response = await axios.delete(`/remove_from_cart/${this.id}`, {
+        let response = await axios.delete(`/remove_from_cart`, {
+          data: {
+            product_id: this.id,
+            quantity: 1,
+          },
           headers: {
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
           },
@@ -62,7 +66,7 @@ export default {
 <template>
   <div class="card">
     <div class="img">
-      <img :src="img" alt="" />
+      <img :src="`http://51.20.115.187:5050${image_url}`" alt="" />
     </div>
     <div class="title">{{ name }}</div>
     <div class="weight">{{ description }}</div>

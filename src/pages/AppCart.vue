@@ -2,9 +2,10 @@
 import axios from "axios";
 import AppCard from "../components/AppCard.vue";
 import { GDialog } from "gitart-vue-dialog";
+import AppLoader from "@/components/AppLoader.vue";
 export default {
   name: "AppCart",
-  components: { AppCard, GDialog },
+  components: { AppCard, GDialog, AppLoader },
   data() {
     return {
       cards: [],
@@ -14,6 +15,7 @@ export default {
       price: "",
       img: "",
       idCard: "",
+      isLoading: false,
     };
   },
   methods: {
@@ -27,6 +29,7 @@ export default {
     },
     async load_info() {
       try {
+        this.isLoading = true;
         let response = await axios.get(`/get_cart`, {
           headers: {
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
@@ -36,6 +39,8 @@ export default {
         this.cards = response.data.cart;
       } catch (err) {
         console.log(err);
+      } finally {
+        this.isLoading = false;
       }
     },
   },
@@ -46,7 +51,8 @@ export default {
 </script>
 <template>
   <h1>{{ $t("cart") }}</h1>
-  <section class="cart" v-if="cards.length > 0">
+  <AppLoader v-if="isLoading" />
+  <section class="cart" v-if="cards.length > 0 && !isLoading">
     <AppCard
       v-for="card in cards"
       :price="card.price"
