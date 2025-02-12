@@ -16,6 +16,10 @@ export default {
       img: "",
       idCard: "",
       isLoading: false,
+      message: "",
+      addresses: [],
+      address_id: "",
+      totalPrice: 0,
     };
   },
   methods: {
@@ -33,10 +37,65 @@ export default {
         let response = await axios.get(`/get_cart`, {
           headers: {
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+            "X-CHAT-ID": "1",
           },
         });
         console.log(response);
-        this.cards = response.data.cart;
+        this.cards = response.data.cart || [];
+        this.totalPrice = response.data.total_price || 0;
+      } catch (err) {
+        console.log(err);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async load_addresses() {
+      try {
+        this.isLoading = true;
+        let response = await axios.get(`/get_addresses`, {
+          headers: {
+            "X-CHAT-ID": "1",
+            "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+          },
+        });
+        console.log(response);
+        this.addresses = response.data.addresses || [];
+        console.log(this.addresses);
+        if (this.addresses.length > 0) {
+          this.address_id = this.addresses[0].id;
+        }
+      } catch (err) {
+        console.log(err);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async createOrder() {
+      try {
+        if (this.cards.length > 0) {
+          this.isLoading = true;
+          let response = await axios.post(
+            `/create_order`,
+            {},
+            {
+              headers: {
+                "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+                "X-CHAT-ID": "1",
+                "X-ADDRESS-ID": this.address_id,
+              },
+            }
+          );
+          console.log(response);
+          if (response.status == 200) {
+            this.message = "Успешно";
+          } else {
+            this.message = response.data.detail;
+          }
+          setTimeout(() => {
+            this.load_info();
+            this.message = "";
+          }, 2000);
+        }
       } catch (err) {
         console.log(err);
       } finally {
@@ -46,6 +105,7 @@ export default {
   },
   mounted() {
     this.load_info();
+    this.load_addresses();
   },
 };
 </script>
@@ -83,6 +143,37 @@ export default {
   <div class="empty" v-else>
     <img class="empty-cart" src="../assets/empty-cart.png" alt="empty-cart" />
     <span>{{ $t("emptyCart") }}</span>
+  </div>
+  <div class="wrap-btns" v-if="cards.length > 0 && !isLoading">
+    <div class="group">
+      <label for="address" class="group-value">Выберите адрес доставки</label>
+      <select
+        class="group-item"
+        name="address"
+        id="address"
+        v-model="address_id"
+      >
+        <option :value="item.id" v-for="item in addresses" :key="item.id">
+          {{ $t("city") }}: {{ item.city }}, {{ $t("street") }}:
+          {{ item.street }}, {{ $t("zipCode") }}: {{ item.zip_code }}
+        </option>
+      </select>
+    </div>
+    <div class="wrap-price">
+      <h2>{{ $t("totalPrice") }}:</h2>
+      <span>{{ totalPrice }} {{ $t("sign") }}</span>
+    </div>
+    <div
+      class="msg"
+      :class="{
+        success: this.message == 'Успешно',
+        error: this.message != 'Успешно',
+      }"
+      v-if="message"
+    >
+      {{ message }}
+    </div>
+    <button class="btn" @click="createOrder()" v-else>Оформить заказ</button>
   </div>
 </template>
 <style scoped>
@@ -167,6 +258,71 @@ export default {
   height: 50px;
 }
 
+.wrap-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.group-value {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5b6171;
+}
+
+.group-item {
+  border-radius: 8px;
+  padding: 12px 16px;
+  border: 1px solid #dfe3ec;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #5b6171;
+}
+
+.group-item::placeholder {
+  color: #8c93a6;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.btn {
+  width: 100%;
+  text-align: center;
+  background-color: #f0feed;
+  color: #259800;
+  padding: 14.5px 24px;
+  border-radius: 8px;
+}
+
+.wrap-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h2 {
+  font-size: 20px;
+  line-height: 20px;
+  color: #272727;
+  font-weight: 600;
+}
+
+.wrap-price span {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #272727;
+}
 @media (max-width: 820px) {
   .catalog {
     justify-content: space-evenly;

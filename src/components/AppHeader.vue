@@ -71,6 +71,7 @@ export default {
   background-color: #f2f2f2;
   border-radius: 100%;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  z-index: 2;
 }
 
 .menu-closed img {
@@ -87,6 +88,7 @@ export default {
   gap: 7px;
   background-color: #f2f2f2;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  z-index: 2;
 }
 
 .fade-enter-active,

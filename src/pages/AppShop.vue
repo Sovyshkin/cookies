@@ -71,6 +71,7 @@ export default {
           {
             headers: {
               "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+              "X-CHAT-ID": "1",
             },
           }
         );
@@ -80,6 +81,7 @@ export default {
         } else {
           this.message = response.data.detail;
         }
+        this.dialogState = false;
         setTimeout(() => {
           this.message = "";
         }, 2500);
@@ -121,17 +123,17 @@ export default {
         </div>
       </div>
     </GDialog>
-    <div
-      class="msg"
-      :class="{
-        success: this.message == 'Успешно',
-        error: this.message != 'Успешно',
-      }"
-      v-if="message"
-    >
-      {{ message }}
-    </div>
   </section>
+  <div
+    class="msg"
+    :class="{
+      success: this.message == 'Успешно',
+      error: this.message != 'Успешно',
+    }"
+    v-if="message"
+  >
+    {{ message }}
+  </div>
 </template>
 <style scoped>
 .catalog {
