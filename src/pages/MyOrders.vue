@@ -36,7 +36,7 @@ export default {
   <h1>{{ $t("myOrders") }}</h1>
   <section class="myOrders">
     <div class="card" v-for="item in orders" :key="item.id">
-      <h2>Заказ №{{ item.id }}</h2>
+      <h2>Заказ №{{ item.order_id }}</h2>
       <div class="group">
         <span class="card-item">{{ $t("city") }}:</span>
         <span class="card-value">{{ item.city }}</span>

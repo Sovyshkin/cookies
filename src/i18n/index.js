@@ -23,6 +23,7 @@ const messages = {
     zipCode: "Почтовый индекс",
     enterZipCode: "Введите почтовый индекс",
     totalPrice: "Общая стоимость",
+    empty: "Пусто...",
   },
   UZ: {
     cart: "Savat",
@@ -45,6 +46,7 @@ const messages = {
     zipCode: "Pochta indeksi",
     enterZipCode: "Pochta indeksini kiriting",
     totalPrice: "Umumiy xarajat",
+    empty: "Bo'sh...",
   },
 };
 

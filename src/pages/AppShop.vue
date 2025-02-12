@@ -98,7 +98,7 @@ export default {
 <template>
   <AppCategories @updateProducts="load_products" />
   <AppLoader v-if="isLoading" />
-  <section class="catalog" v-if="!isLoading">
+  <section class="catalog" v-if="!isLoading && products.length > 0">
     <AppCard
       v-for="card in products"
       :price="card.price"
@@ -124,6 +124,10 @@ export default {
       </div>
     </GDialog>
   </section>
+  <div class="empty" v-else>
+    <img class="empty-cart" src="../assets/empty-cart.png" alt="empty-cart" />
+    <span>{{ $t("empty") }}</span>
+  </div>
   <div
     class="msg"
     :class="{
@@ -197,6 +201,26 @@ export default {
 .plus {
   width: 24px;
   height: 24px;
+}
+
+.empty {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  color: rgb(166, 166, 166);
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+}
+
+.empty-cart {
+  width: 50px;
+  height: 50px;
 }
 
 @media (max-width: 820px) {
