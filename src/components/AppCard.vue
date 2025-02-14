@@ -68,7 +68,7 @@ export default {
 <template>
   <div class="card">
     <div class="img">
-      <img :src="`http://51.20.115.187:5050${image_url}`" alt="" />
+      <img :src="`http://51.20.115.187:3000${image_url}`" alt="" />
     </div>
     <div class="title">{{ name }}</div>
     <div class="weight">{{ description }}</div>

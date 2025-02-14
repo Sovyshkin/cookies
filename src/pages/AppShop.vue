@@ -26,7 +26,7 @@ export default {
       this.name = card.name;
       this.description = card.description;
       this.price = card.price;
-      this.img = card.img;
+      this.img = card.image_url;
       this.idCard = card.id;
       this.dialogState = true;
     },
@@ -113,7 +113,7 @@ export default {
     <GDialog v-model="dialogState" :max-width="1000" :border-radius="30">
       <div class="dialog">
         <div class="img">
-          <img :src="img" alt="" />
+          <img :src="`http://51.20.115.187:3000${img}`" alt="" />
         </div>
         <div class="title">{{ name }}</div>
         <div class="weight">{{ description }} г</div>
