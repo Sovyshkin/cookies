@@ -40,9 +40,11 @@ export default {
         for (let i = 0; i < this.sections.length; i++) {
           this.sections[i].active = false;
         }
-        this.sections[0].active = true;
-        this.section_id = this.sections[0].id;
-        this.$emit("updateProducts", this.section_id);
+        if (this.sections[0]) {
+          this.sections[0].active = true;
+          this.section_id = this.sections[0].id;
+          this.$emit("updateProducts", this.section_id);
+        }
       } catch (err) {
         console.log(err);
       }

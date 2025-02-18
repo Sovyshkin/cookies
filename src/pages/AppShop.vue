@@ -30,19 +30,6 @@ export default {
       this.idCard = card.id;
       this.dialogState = true;
     },
-    async getCountryByIP() {
-      const url = "http://ip-api.com/json";
-      const response = await fetch(url);
-      const data = await response.json();
-      let country = data.country;
-      console.log(country);
-      if (country == "Russia") {
-        this.country = "RU";
-      } else if (country == "Uzbekistan") {
-        this.country = "UZ";
-      }
-      this.$t.locale = this.country;
-    },
     async load_products(section_id) {
       try {
         this.isLoading = true;
@@ -90,9 +77,7 @@ export default {
       }
     },
   },
-  mounted() {
-    this.getCountryByIP();
-  },
+  mounted() {},
 };
 </script>
 <template>
