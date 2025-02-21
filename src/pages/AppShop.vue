@@ -98,7 +98,7 @@ export default {
     <GDialog v-model="dialogState" :max-width="1000" :border-radius="30">
       <div class="dialog">
         <div class="img">
-          <img :src="`http://51.20.115.187:3000${img}`" alt="" />
+          <img :src="`https://saler-bot.prostor-dev.ru/api${img}`" alt="" />
         </div>
         <div class="title">{{ name }}</div>
         <div class="weight">{{ description }} г</div>
