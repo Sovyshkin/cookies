@@ -158,8 +158,7 @@ export default {
   letter-spacing: 0.02px;
 }
 
-.img {
-  width: 70%;
+.img img {
   height: 30vh;
   border-radius: 18px;
   background-color: #f2f2f2;
