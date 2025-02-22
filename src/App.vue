@@ -20,10 +20,9 @@ export default {
         this.initData = window.Telegram.WebApp.initData;
         if (this.initData) {
           this.params = new URLSearchParams(this.initData);
-          this.chatID = this.params.get("chat_id");
         }
       } else {
-        console.error("Telegram Web App API is not available");
+        console.log("Telegram Web App API is not available");
       }
     },
   },
