@@ -56,6 +56,7 @@ export default {
 #app {
   font-family: "Montserrat", sans-serif;
   width: 100%;
+  background-color: #fff;
 }
 * {
   padding: 0px;
@@ -80,6 +81,7 @@ export default {
   width: 85%;
   margin: 0 auto;
   padding-top: 10vh;
+  background-color: #fff;
 }
 
 body,
@@ -88,6 +90,7 @@ body,
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
 }
 
 /* Links */
