@@ -4,15 +4,32 @@ export default {
   name: "App",
   components: { AppHeader },
   data() {
-    return {};
+    return {
+      chatID: "",
+    };
   },
-  methods: {},
-  mounted() {},
+  methods: {
+    getChatID() {
+      if (window.Telegram && window.Telegram.WebApp) {
+        const initData = window.Telegram.WebApp.initData;
+        if (initData) {
+          const params = new URLSearchParams(initData);
+          this.chatID = params.get("chat_id");
+        }
+      } else {
+        console.error("Telegram Web App API is not available");
+      }
+    },
+  },
+  mounted() {
+    this.getChatID();
+  },
 };
 </script>
 <template>
   <AppHeader />
   <div class="wrap">
+    <p>Chat ID: {{ chatID }}</p>
     <router-view></router-view>
   </div>
 </template>
