@@ -7,7 +7,6 @@ export default {
   data() {
     return {
       chatID: "", // Храним chatID
-      initData: "", // Храним initData (для отладки)
     };
   },
   methods: {
@@ -15,12 +14,24 @@ export default {
       // Проверяем, доступен ли Telegram Web App API
       if (window.Telegram && window.Telegram.WebApp) {
         // Получаем initData
-        this.initData = window.Telegram.WebApp.initData;
+        const initData = window.Telegram.WebApp.initData;
 
         // Если initData доступен, извлекаем chat_id
-        if (this.initData) {
-          const params = new URLSearchParams(this.initData);
-          this.chatID = params.get("chat_id");
+        if (initData) {
+          // Декодируем строку initData
+          const decodedInitData = decodeURIComponent(initData);
+
+          // Создаем объект URLSearchParams для парсинга
+          const params = new URLSearchParams(decodedInitData);
+
+          // Получаем параметр user
+          const userString = params.get("user");
+
+          // Если user существует, парсим его
+          if (userString) {
+            const user = JSON.parse(userString);
+            this.chatID = user.id; // chatID — это id пользователя
+          }
         }
       } else {
         console.log("Telegram Web App API is not available");
@@ -37,7 +48,6 @@ export default {
   <AppHeader />
   <div class="wrap">
     <p>Chat ID: {{ chatID }}</p>
-    <p>initData: {{ initData }}</p>
     <router-view></router-view>
   </div>
 </template>
