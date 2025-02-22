@@ -1,25 +1,26 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
+
 export default {
   name: "App",
   components: { AppHeader },
   data() {
     return {
-      chatID: "",
-      params: "",
-      windowTelegram: "",
-      tg2: "",
-      initData: "",
+      chatID: "", // Храним chatID
+      initData: "", // Храним initData (для отладки)
     };
   },
   methods: {
     getChatID() {
-      this.windowTelegram = window.Telegram;
-      this.tg2 = window.Telegram.WebApp;
+      // Проверяем, доступен ли Telegram Web App API
       if (window.Telegram && window.Telegram.WebApp) {
+        // Получаем initData
         this.initData = window.Telegram.WebApp.initData;
+
+        // Если initData доступен, извлекаем chat_id
         if (this.initData) {
-          this.params = new URLSearchParams(this.initData);
+          const params = new URLSearchParams(this.initData);
+          this.chatID = params.get("chat_id");
         }
       } else {
         console.log("Telegram Web App API is not available");
@@ -27,17 +28,15 @@ export default {
     },
   },
   mounted() {
-    this.getChatID();
+    this.getChatID(); // Вызываем метод при монтировании компонента
   },
 };
 </script>
+
 <template>
   <AppHeader />
   <div class="wrap">
     <p>Chat ID: {{ chatID }}</p>
-    <p>params: {{ params }}</p>
-    <p>windowTelegram: {{ windowTelegram }}</p>
-    <p>tg2: {{ tg2 }}</p>
     <p>initData: {{ initData }}</p>
     <router-view></router-view>
   </div>
