@@ -6,15 +6,21 @@ export default {
   data() {
     return {
       chatID: "",
+      params: "",
+      windowTelegram: "",
+      tg2: "",
+      initData: "",
     };
   },
   methods: {
     getChatID() {
+      this.windowTelegram = window.Telegram;
+      this.tg2 = window.Telegram.WebApp;
       if (window.Telegram && window.Telegram.WebApp) {
-        const initData = window.Telegram.WebApp.initData;
+        this.initData = window.Telegram.WebApp.initData;
         if (initData) {
-          const params = new URLSearchParams(initData);
-          this.chatID = params.get("chat_id");
+          this.params = new URLSearchParams(this.initData);
+          this.chatID = this.params.get("chat_id");
         }
       } else {
         console.error("Telegram Web App API is not available");
@@ -30,6 +36,10 @@ export default {
   <AppHeader />
   <div class="wrap">
     <p>Chat ID: {{ chatID }}</p>
+    <p>params: {{ params }}</p>
+    <p>windowTelegram: {{ windowTelegram }}</p>
+    <p>tg2: {{ tg2 }}</p>
+    <p>initData: {{ initData }}</p>
     <router-view></router-view>
   </div>
 </template>
