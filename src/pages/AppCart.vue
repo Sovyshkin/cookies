@@ -24,12 +24,16 @@ export default {
   },
   methods: {
     openModal(card) {
-      this.name = card.name;
-      this.description = card.description;
-      this.price = card.price;
-      this.img = card.img;
-      this.idCard = card.id;
-      this.dialogState = true;
+      try {
+        this.name = card.name;
+        this.description = card.description;
+        this.price = card.price;
+        this.img = card.img;
+        this.idCard = card.id;
+        this.dialogState = true;
+      } catch (err) {
+        console.log(err);
+      }
     },
     async load_info() {
       try {

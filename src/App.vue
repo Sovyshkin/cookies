@@ -18,7 +18,7 @@ export default {
       this.tg2 = window.Telegram.WebApp;
       if (window.Telegram && window.Telegram.WebApp) {
         this.initData = window.Telegram.WebApp.initData;
-        if (initData) {
+        if (this.initData) {
           this.params = new URLSearchParams(this.initData);
           this.chatID = this.params.get("chat_id");
         }
