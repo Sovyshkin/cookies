@@ -54,7 +54,7 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 #app {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Manrope", sans-serif;
   width: 100%;
   background-color: #fff;
 }
@@ -64,7 +64,7 @@ export default {
   border: none;
   font-weight: 400;
   font-style: normal;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 
 *,
