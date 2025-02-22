@@ -41,7 +41,7 @@ export default {
         let response = await axios.get(`/get_cart`, {
           headers: {
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
-            "X-CHAT-ID": "1",
+            "X-CHAT-ID": localStorage.getItem("chatID"),
           },
         });
         console.log(response);
@@ -58,7 +58,7 @@ export default {
         this.isLoading = true;
         let response = await axios.get(`/get_addresses`, {
           headers: {
-            "X-CHAT-ID": "1",
+            "X-CHAT-ID": localStorage.getItem("chatID"),
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
           },
         });
@@ -84,7 +84,7 @@ export default {
             {
               headers: {
                 "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
-                "X-CHAT-ID": "1",
+                "X-CHAT-ID": localStorage.getItem("chatID"),
                 "X-ADDRESS-ID": this.address_id,
               },
             }

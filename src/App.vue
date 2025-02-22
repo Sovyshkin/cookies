@@ -31,6 +31,7 @@ export default {
           if (userString) {
             const user = JSON.parse(userString);
             this.chatID = user.id; // chatID — это id пользователя
+            localStorage.setItem("chatID", this.chatID);
           }
         }
       } else {
@@ -47,7 +48,6 @@ export default {
 <template>
   <AppHeader />
   <div class="wrap">
-    <p>Chat ID: {{ chatID }}</p>
     <router-view></router-view>
   </div>
 </template>

@@ -26,7 +26,7 @@ export default {
           },
           headers: {
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
-            "X-CHAT-ID": "1",
+            "X-CHAT-ID": localStorage.getItem("chatID"),
           },
         });
         console.log(response);
@@ -49,7 +49,7 @@ export default {
           {
             headers: {
               "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
-              "X-CHAT-ID": "1",
+              "X-CHAT-ID": localStorage.getItem("chatID"),
             },
           }
         );

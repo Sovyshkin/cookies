@@ -14,7 +14,7 @@ export default {
         this.isLoading = true;
         let response = await axios.get(`/get_orders`, {
           headers: {
-            "X-CHAT-ID": "1",
+            "X-CHAT-ID": localStorage.getItem("chatID"),
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
           },
         });
