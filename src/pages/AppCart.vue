@@ -77,29 +77,36 @@ export default {
     },
     async createOrder() {
       try {
-        if (this.cards.length > 0) {
-          this.isLoading = true;
-          let response = await axios.post(
-            `/create_order`,
-            {},
-            {
-              headers: {
-                "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
-                "X-CHAT-ID": localStorage.getItem("chatID"),
-                "X-ADDRESS-ID": this.address_id,
-              },
+        if (this.address_id) {
+          if (this.cards.length > 0) {
+            this.isLoading = true;
+            let response = await axios.post(
+              `/create_order`,
+              {},
+              {
+                headers: {
+                  "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+                  "X-CHAT-ID": localStorage.getItem("chatID"),
+                  "X-ADDRESS-ID": this.address_id,
+                },
+              }
+            );
+            console.log(response);
+            if (response.status == 200) {
+              this.message = "Успешно";
+            } else {
+              this.message = response.data.detail;
             }
-          );
-          console.log(response);
-          if (response.status == 200) {
-            this.message = "Успешно";
-          } else {
-            this.message = response.data.detail;
+            setTimeout(() => {
+              this.load_info();
+              this.message = "";
+            }, 2000);
           }
+        } else {
+          this.message = "Выберите адрес доставки!";
           setTimeout(() => {
-            this.load_info();
             this.message = "";
-          }, 2000);
+          }, 3000);
         }
       } catch (err) {
         console.log(err);
