@@ -67,7 +67,7 @@ export default {
 </script>
 <template>
   <div class="card">
-    <div class="img">
+    <div v-if="image_url" class="img">
       <img :src="`https://saler-bot.prostor-dev.ru/api${image_url}`" alt="" />
     </div>
     <div class="title">{{ name }}</div>

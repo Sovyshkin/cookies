@@ -41,6 +41,7 @@ export default {
         let response = await axios.get(`/get_cart`, {
           headers: {
             "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+            // "X-CHAT-ID": localStorage.getItem("chatID"),
             "X-CHAT-ID": localStorage.getItem("chatID"),
           },
         });
@@ -122,7 +123,7 @@ export default {
       :price="card.price"
       :name="card.name"
       :description="card.description"
-      :img="card.img"
+      :image_url="card.img"
       :id="card.id"
       :key="card.id"
       :cart="true"
