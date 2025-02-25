@@ -130,7 +130,7 @@ export default {
       :price="card.price"
       :name="card.name"
       :description="card.description"
-      :image_url="card.img"
+      :image_url="card.image_url"
       :id="card.id"
       :key="card.id"
       :cart="true"

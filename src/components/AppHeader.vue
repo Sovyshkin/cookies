@@ -52,11 +52,8 @@ export default {
 <style scoped>
 .wrapper {
   position: absolute;
-  width: 100%;
+  right: 3%;
   padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
 }
 
 .menu {

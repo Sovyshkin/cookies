@@ -111,7 +111,6 @@ export default {
 .category:active,
 .category:focus,
 .active {
-  transform: translateY(-3px);
   color: rgb(255, 51, 95);
 }
 </style>
