@@ -42,6 +42,7 @@ export default {
         this.products = response.data.products;
       } catch (err) {
         console.log(err);
+        this.products = [];
       } finally {
         this.isLoading = false;
       }
