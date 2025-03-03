@@ -91,6 +91,7 @@ export default {
       :name="card.name"
       :description="card.description"
       :image_url="card.image_url"
+      :stock="card.stock"
       :id="card.id"
       :key="card.id"
       @click="openModal(card)"

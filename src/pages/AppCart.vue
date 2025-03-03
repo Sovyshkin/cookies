@@ -133,6 +133,7 @@ export default {
       :image_url="card.image_url"
       :id="card.id"
       :key="card.id"
+      :stock="card.stock"
       :cart="true"
       :quantity="card.quantity"
       @click="openModal(card)"

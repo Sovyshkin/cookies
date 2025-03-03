@@ -11,6 +11,7 @@ export default {
     id: String,
     name: String,
     image_url: String,
+    stock: String,
     description: String,
     price: String,
     cart: Boolean,
@@ -75,6 +76,7 @@ export default {
       />
     </div>
     <div class="title">{{ name }}</div>
+    <div class="weight">{{ $t("inStock") }} - {{ stock }} {{ $t("dona") }}</div>
     <div class="weight">{{ description }}</div>
     <div class="price">
       <img

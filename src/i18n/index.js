@@ -24,6 +24,8 @@ const messages = {
     enterZipCode: "Введите почтовый индекс",
     totalPrice: "Общая стоимость",
     empty: "Пусто...",
+    dona: "шт",
+    inStock: "в начилии",
   },
   UZ: {
     cart: "Savat",
@@ -47,6 +49,8 @@ const messages = {
     enterZipCode: "Pochta indeksini kiriting",
     totalPrice: "Umumiy xarajat",
     empty: "Bo'sh...",
+    dona: "dona",
+    inStock: "mavjud",
   },
 };
 
