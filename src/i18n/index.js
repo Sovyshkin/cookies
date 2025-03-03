@@ -25,7 +25,7 @@ const messages = {
     totalPrice: "Общая стоимость",
     empty: "Пусто...",
     dona: "шт",
-    inStock: "в начилии",
+    inStock: "в наличии",
   },
   UZ: {
     cart: "Savat",
