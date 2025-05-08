@@ -43,6 +43,7 @@ export default {
         if (this.sections[0]) {
           this.sections[0].active = true;
           this.section_id = this.sections[0].id;
+          localStorage.setItem('section_id', this.section_id)
           this.$emit("updateProducts", this.section_id);
         }
       } catch (err) {
@@ -58,6 +59,7 @@ export default {
             if (this.sections[i].id == id) {
               this.sections[i].active = true;
               this.section_id = id;
+              localStorage.setItem('section_id', this.section_id)
               this.$emit("updateProducts", this.section_id);
             }
           }

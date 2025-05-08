@@ -33,11 +33,20 @@ export default {
     async load_products(section_id) {
       try {
         this.isLoading = true;
-        let response = await axios.get(`/get_products/${section_id}`, {
-          headers: {
-            "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
-          },
-        });
+        let response
+        if (section_id) {
+          response = await axios.get(`/get_products/${section_id}`, {
+            headers: {
+              "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+            },
+          });
+        } else {
+          response = await axios.get(`/get_products/${localStorage.getItem('section_id')}`, {
+            headers: {
+              "X-API-KEY": "d87f37bdd129d8150610ab0268e161a5",
+            },
+          });
+        }
         console.log(response);
         this.products = response.data.products;
       } catch (err) {
@@ -95,7 +104,7 @@ export default {
       :id="card.id"
       :key="card.id"
       @click="openModal(card)"
-      @updateInfo="load_products"
+      @updateInfo="load_products()"
     />
     <GDialog v-model="dialogState" :max-width="1000" :border-radius="30">
       <div class="dialog">
