@@ -145,7 +145,7 @@ export default {
           <img :src="img" alt="" />
         </div>
         <div class="title">{{ name }}</div>
-        <div class="weight">{{ description }} г</div>
+        <div class="weight">{{ description }}</div>
         <div class="price">
           <span>{{ price }} ₽</span>
           <img class="plus" src="../assets/plus.png" alt="" />

@@ -112,7 +112,7 @@ export default {
           <img :src="`https://saler-bot.prostor-dev.ru/api${img}`" alt="" />
         </div>
         <div class="title">{{ name }}</div>
-        <div class="weight">{{ description }} г</div>
+        <div class="weight">{{ description }}</div>
         <div class="price" @click="addCart">
           <span>{{ price }} ₽</span>
           <img class="plus" src="../assets/plus.png" alt="" />

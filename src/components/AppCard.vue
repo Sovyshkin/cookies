@@ -128,7 +128,7 @@ export default {
   width: 200px;
   height: 200px;
   border-radius: 18px;
-  background-color: #f2f2f2;
+  background-color: #fff;
 }
 
 .price {
